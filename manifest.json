@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "E-Commerce Extension",
+  "version": "1.0.0",
+  "description": "Auth-enabled React Chrome extension",
+
+  "action": {
+    "default_popup": "index.html"
+  },
+
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "**/*.js",
+        "**/*.css",
+        "**/*.png",
+        "**/*.svg",
+        "**/*.jpg",
+        "**/*.woff",
+        "**/*.woff2"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
