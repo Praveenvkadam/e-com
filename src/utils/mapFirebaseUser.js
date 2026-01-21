@@ -7,6 +7,6 @@ export const mapFirebaseUser = (user) => {
     displayName: user.displayName,
     photoURL: user.photoURL,
     phoneNumber: user.phoneNumber,
-    providerId: user.providerData?.[0]?.providerId || null,
+    providers: user.providerData.map((p) => p.providerId),
   };
 };
