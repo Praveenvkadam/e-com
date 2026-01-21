@@ -1,27 +1,38 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  user: null,     // firebase user object
-  loading: true,  // true until first auth check completes
+  user: null,
+  loading: true,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setAuthUser: (state, action) => {
+    setAuthUser(state, action) {
       state.user = action.payload;
       state.loading = false;
     },
-    clearAuthUser: (state) => {
+    clearAuthUser(state) {
       state.user = null;
       state.loading = false;
     },
-    setLoading: (state, action) => {
-      state.loading = action.payload;
+    updateUserProfile(state, action) {
+      if (!state.user) return;
+
+      state.user = {
+        ...state.user,
+        displayName: action.payload.displayName ?? state.user.displayName,
+        photoURL: action.payload.photoURL ?? state.user.photoURL,
+      };
     },
   },
 });
 
-export const { setAuthUser, clearAuthUser, setLoading } = authSlice.actions;
+export const {
+  setAuthUser,
+  clearAuthUser,
+  updateUserProfile,
+} = authSlice.actions;
+
 export default authSlice.reducer;

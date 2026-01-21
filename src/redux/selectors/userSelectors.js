@@ -1,7 +1,3 @@
-export const selectUserState = (state) => state.auth;
-
-export const selectUser = (state) =>
-  selectUserState(state).user;
-
-export const selectUserStatus = (state) =>
-  selectUserState(state).status;
+export const selectAuthState = (state) => state.auth;
+export const selectUser = (state) => state.auth.user;
+export const selectAuthLoading = (state) => state.auth.loading;
