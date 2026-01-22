@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { FiShoppingCart } from "react-icons/fi";
+import { FiShoppingCart, FiChevronDown } from "react-icons/fi";
 import { logoutUser } from "../Service/auth";
 
 const navLinks = [
@@ -21,10 +21,7 @@ const Navbar = () => {
 
   const isAuthenticated = Boolean(user);
 
-  const cartCount = cartItems.reduce(
-    (sum, item) => sum + item.quantity,
-    0
-  );
+  const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
   const resetMenus = () => {
     setSidebarOpen(false);
@@ -96,7 +93,7 @@ const Navbar = () => {
                   }}
                   className="flex items-center gap-2"
                 >
-                 <img
+                  <img
                     src={user?.photoURL || "https://via.placeholder.com/40"}
                     alt="User"
                     className="w-9 h-9 rounded-full object-cover"
@@ -106,8 +103,14 @@ const Navbar = () => {
                     }}
                   />
 
-                  <span className="text-sm font-semibold">
+                  <span className="text-sm font-semibold flex items-center gap-1">
                     {user.displayName || "User"}
+                    <FiChevronDown
+                      size={16}
+                      className={`transition-transform duration-200 ${
+                        userMenuOpen ? "rotate-180" : ""
+                      }`}
+                    />
                   </span>
                 </button>
 
